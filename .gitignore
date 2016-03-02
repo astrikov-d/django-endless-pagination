@@ -1,4 +1,5 @@
 *.py[cod]
+.idea
 .coverage
 .DS_Store
 .venv*
