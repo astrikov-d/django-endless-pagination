@@ -43,7 +43,8 @@ def get_page_number_from_request(
     then *default* number is returned.
     """
     try:
-        return int(request.REQUEST[querystring_key])
+        d = request.POST if request.method == 'POST' else request.GET
+        return int(d[querystring_key])
     except (KeyError, TypeError, ValueError):
         return default
 
