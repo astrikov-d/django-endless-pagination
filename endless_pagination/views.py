@@ -130,9 +130,9 @@ class AjaxMultipleObjectTemplateResponseMixin(
 
     def get_template_names(self):
         """Switch the templates for Ajax requests."""
-        request = self.request
-        querystring_key = request.REQUEST.get('querystring_key', PAGE_LABEL)
-        if request.is_ajax() and querystring_key == self.key:
+        d = self.request.GET if self.request.method == 'GET' else self.request.POST
+        querystring_key = d.get('querystring_key', PAGE_LABEL)
+        if self.request.is_ajax() and querystring_key == self.key:
             return [self.page_template]
         return super(
             AjaxMultipleObjectTemplateResponseMixin, self).get_template_names()
